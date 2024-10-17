@@ -1,4 +1,5 @@
-```Diagramme de classe avec Mermaid
+```
+Diagramme de classe avec Mermaid
 classDiagram
     class Logement {
         +Type: string
