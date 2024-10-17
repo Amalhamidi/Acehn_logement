@@ -1,4 +1,5 @@
-```classDiagram
+```Diagramme de classe avec Mermaid
+classDiagram
     class Logement {
         +Type: string
         +Disponibilité: int
@@ -42,5 +43,4 @@
     Logement <|-- Social
     Logement <|-- Privé
     Logement <|-- HLM
-
 ```
