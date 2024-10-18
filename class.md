@@ -72,7 +72,7 @@
         +organiserVisite(logement : Logement, demandeur : Demandeur) : void
     }
 
-    class ServiceLogementMairie {
+    class ServiceLogement {
         -commune : string
         +enregistrerDemandeLogementSocial(demande : Demandeur) : void
         +informerSurDispositifsAide() : void
