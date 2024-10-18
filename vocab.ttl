@@ -6,32 +6,32 @@
 @prefix o: <http://omeka.org/s/vocabs/o#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix ma: <http://www.w3.org/ns/ma-ont#>.
-@prefix eqt: <https://jardindesconnaissances.univ-paris8.fr/onto/eqt#> .
+@prefix log: <https://jardindesconnaissances.univ-paris8.fr/onto/log#> .
 
-<https://jardindesconnaissances.univ-paris8.fr/onto/eqt#> a owl:Ontology ;
-    dcterms:title "Enquête" .
+<https://jardindesconnaissances.univ-paris8.fr/onto/log#> a owl:Ontology ;
+    dcterms:title "Logement Acehn" .
 
-eqt:Enquete a rdfs:Class ;
-    rdfs:label "Enquête" ;
+log:ServiceLogement a rdfs:Class ;
+    rdfs:label "ServiceLogement" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-eqt:Question a rdfs:Class ;
-    rdfs:label "Question" ;
+log:BailleurSocial a rdfs:Class ;
+    rdfs:label "BailleurSocial" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-eqt:Comission a rdfs:Class ;
-    rdfs:label "Comission" ;
+log:Demandeur a rdfs:Class ;
+    rdfs:label "Demandeur" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-eqt:Analyse a rdfs:Class ;
-    rdfs:label "Analyse" ;
+log:ContratLocation a rdfs:Class ;
+    rdfs:label "ContratLocation" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-eqt:Interlocuteur a rdfs:Class ;
+eqt: a rdfs:Class ;
     rdfs:label "Interlocuteur" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
