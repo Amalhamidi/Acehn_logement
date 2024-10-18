@@ -1,69 +1,120 @@
 ```mermaid
-classDiagram
+
+     classDiagram
     class Logement {
-        int id
-        string adresse
-        float superficie
-        int nombrePieces
-        string type
-        float loyer
-        string etat
-        bool disponibilite
-        calculerPrixM2() float
-        estDisponible() bool
+        -id : int
+        -adresse : string
+        -superficie : float
+        -nombrePieces : int
+        -statut : string
+        +calculerLoyer() : float
+        +verifierDisponibilite() : boolean
+        +mettreAJour(details : string)
     }
 
-    class Propriétaire {
-        int id
-        string nom
-        string adresse
-        string numeroTelephone
-        string email
-        ajouterLogement(Logement) void
-        retirerLogement(Logement) void
-        obtenirListeLogements() List<Logement>
+    class LogementSocial {
+        -conventionnement : string
+        -plafondRessources : float
+        +verifierEligibilite(demandeur : Demandeur) : boolean
+    }
+
+    class LogementPrive {
+        -proprietaire : Proprietaire
+        +negocierLoyer() : void
+    }
+
+    class ResidenceEtudiante {
+        -gestionnaire : string
+        -servicesInclus : string[]
+        +reserverChambre(etudiant : Etudiant) : boolean
+    }
+
+    class LogementUrgence {
+        -dureeMaxSejour : int
+        -typeAccueil : string
+        +attribuerPlace(beneficiaire : PersonneEnDifficulte) : void
+    }
+
+    class Proprietaire {
+        -nom : string
+        -coordonnees : string
+        +declarerRevenusFonciers() : void
+        +gererBien(logement : Logement) : void
     }
 
     class Locataire {
-        int id
-        string nom
-        string numeroTelephone
-        string email
-        float revenuMensuel
-        louerLogement(Logement) void
-        arreterLocation(Logement) void
-        payerLoyer(float) void
+        -nom : string
+        -dateEntree : Date
+        +payerLoyer() : void
+        +demanderTravaux() : void
     }
 
-    class AgenceImmobilière {
-        int id
-        string nom
-        string adresse
-        string numeroTelephone
-        string email
-        List<Logement> listeLogements
-        ajouterLogement(Logement) void
-        rechercherLogement(filtre) List<Logement>
-        contacterProprietaire(Propriétaire) void
+    class Demandeur {
+        -id : int
+        -nom : string
+        -revenu : float
+        -situationFamiliale : string
+        +deposerDemande(type : string) : void
+        +mettreAJourDossier() : void
     }
 
-    class ContratDeLocation {
-        int id
-        Date dateDebut
-        Date dateFin
-        float montantLoyer
-        Locataire locataire
-        Logement logement
-        Propriétaire proprietaire
-        calculerDureeContrat() int
-        resilierContrat() void
+    class BailleurSocial {
+        -nom : string
+        -parcImmobilier : Logement[]
+        +attribuerLogement(demandeur : Demandeur, logement : LogementSocial) : void
+        +gererPatrimoine() : void
     }
 
-    Propriétaire "1" -- "0..*" Logement : possède
-    Locataire "1" -- "0..1" ContratDeLocation : signe
-    Logement "1" -- "0..*" ContratDeLocation : est loué dans
-    Propriétaire "1" -- "0..*" ContratDeLocation : est partie prenante
-    AgenceImmobilière "1" -- "0..*" Logement : gère
+    class AgenceImmobiliere {
+        -nom : string
+        -commission : float
+        +gererLocation(logement : LogementPrive) : void
+        +organiserVisite(logement : Logement, demandeur : Demandeur) : void
+    }
 
-   
+    class ServiceLogementMairie {
+        -commune : string
+        +enregistrerDemandeLogementSocial(demande : Demandeur) : void
+        +informerSurDispositifsAide() : void
+    }
+
+    class CommissionAttribution {
+        -membres : string[]
+        -dateCommission : Date
+        +examinerDossier(demandeur : Demandeur) : void
+        +attribuerLogement(demandeur : Demandeur, logement : LogementSocial) : void
+    }
+
+    class ContratLocation {
+        -dateDebut : Date
+        -duree : int
+        -montantLoyer : float
+        +signer(proprietaire : Proprietaire, locataire : Locataire) : void
+        +renouveler() : void
+        +resilier() : void
+    }
+
+    class Travaux {
+        -type : string
+        -cout : float
+        -dateDebut : Date
+        +planifier() : void
+        +effectuer() : void
+        +verifierConformite() : boolean
+    }
+
+    Logement <|-- LogementSocial
+    Logement <|-- LogementPrive
+    Logement <|-- ResidenceEtudiante
+    Logement <|-- LogementUrgence
+    Logement "1" --> "0..1" Proprietaire : appartient à
+    Logement "1" --> "0..1" Locataire : occupé par
+    Logement "1" --> "0..*" Travaux : subit
+    BailleurSocial "1" --> "1..*" LogementSocial : gère
+    AgenceImmobiliere "1" --> "0..*" LogementPrive : gère
+    ServiceLogementMairie "1" --> "0..*" Demandeur : enregistre
+    CommissionAttribution "1" --> "0..*" LogementSocial : attribue
+    ContratLocation "1" --> "1" Logement : concerne
+    Demandeur "1" --> "0..1" Logement : postule pour
+    BailleurSocial "1" --> "1" CommissionAttribution : organise
 ```
