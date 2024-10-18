@@ -1,16 +1,17 @@
 ```
 Diagramme de classe avec Mermaid
 classDiagram
-    class Logement {
-        +Type: string
-        +Disponibilité: int
-        +Qualité: string
-        +Surface: string
-        +Coût: string
-        +ConditionsAccès: string
-        +Demande: string
-    }
-
+    Logement <|-- Social
+    Logement <|-- Privé
+    Logement <|-- HLM
+    Logement : +String Type
+    Logement : +int Disponibilité
+    Logement : +String Qualité
+    Logement : +String Surface
+    Logement : +String Coût
+    Logement : +String ConditionsAccès
+    Logement : +String Demande
+  
     class Social {
         +Type: "social"
         +Disponibilité: 2
@@ -41,7 +42,5 @@ classDiagram
         +Demande: "excès"
     }
 
-    Logement <|-- Social
-    Logement <|-- Privé
-    Logement <|-- HLM
+   
 ```
