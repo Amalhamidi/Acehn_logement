@@ -1,3 +1,4 @@
+```
 classDiagram
     class Logement {
         +Type: string
@@ -42,4 +43,4 @@ classDiagram
     Logement <|-- Social
     Logement <|-- Privé
     Logement <|-- HLM
-
+```
