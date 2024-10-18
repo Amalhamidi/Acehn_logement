@@ -112,7 +112,7 @@
     Logement "1" --> "0..*" Travaux : subit
     BailleurSocial "1" --> "1..*" LogementSocial : gère
     AgenceImmobiliere "1" --> "0..*" LogementPrive : gère
-    ServiceLogementMairie "1" --> "0..*" Demandeur : enregistre
+    ServiceLogement "1" --> "0..*" Demandeur : enregistre
     CommissionAttribution "1" --> "0..*" LogementSocial : attribue
     ContratLocation "1" --> "1" Logement : concerne
     Demandeur "1" --> "0..1" Logement : postule pour
