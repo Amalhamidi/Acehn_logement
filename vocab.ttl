@@ -31,42 +31,118 @@ log:ContratLocation a rdfs:Class ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-eqt: a rdfs:Class ;
-    rdfs:label "Interlocuteur" ;
+log:Logement a rdfs:Class ;
+    rdfs:label "Logement" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-eqt:Decision a rdfs:Class ;
-    rdfs:label "Decision" ;
+log:CommissionAttribution a rdfs:Class ;
+    rdfs:label "CommissionAttribution" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-eqt:Reponse a rdfs:Class ;
-    rdfs:label "Reponse" ;
+log:AgenceImmobiliere a rdfs:Class ;
+    rdfs:label "AgenceImmobiliere" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-eqt:hasInterlocuteur a rdf:Property ;
-    rdfs:label "à comme interlocateur" ;
+log:LogementPrive a rdfs:Class ;
+    rdfs:label "LogementPrive" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-eqt:hasAnalyste a rdf:Property ;
-    rdfs:label "à comme analyste" ;
+log:LogementSocial a rdfs:Class ;
+    rdfs:label "LogementSocial" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-eqt:hasEnquete a rdf:Property ;
-    rdfs:label "à comme enquête" ;
+log:ResidenceEtudiante a rdfs:Class ;
+    rdfs:label "ResidenceEtudiante" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-eqt:hasQuestion a rdf:Property ;
-    rdfs:label "à comme question" ;
+log:LogementUrgence a rdfs:Class ;
+    rdfs:label "LogementUrgence" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-eqt:hasReponse a rdf:Property ;
-    rdfs:label "à comme réponse" ;
+log:Proprietaire a rdfs:Class ;
+    rdfs:label "Proprietaire" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
+
+log:Locataire a rdfs:Class ;
+    rdfs:label "Locataire" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:Travaux a rdfs:Class ;
+    rdfs:label "Travaux" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:hasServiceLogement a rdf:Property ;
+    rdfs:label "à comme service logement" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:hasBailleurSocial a rdf:Property ;
+    rdfs:label "à comme bailleur social" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:hasDemandeur a rdf:Property ;
+    rdfs:label "à comme demandeur" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:hasContratLocation a rdf:Property ;
+    rdfs:label "à comme contrat location" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:hasLogement a rdf:Property ;
+    rdfs:label "à comme logement" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:hasCommissionAttribution a rdf:Property ;
+    rdfs:label "à comme commission d'attribution" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:hasAgenceImmobiliere a rdf:Property ;
+    rdfs:label "à comme agence immobiliere" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:hasLogementPrive a rdf:Property ;
+    rdfs:label "à comme logement prive" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:hasResidenceEtudiante a rdf:Property ;
+    rdfs:label "à comme residence etudiante" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:hasLogementUrgence a rdf:Property ;
+    rdfs:label "à comme logement urgence" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:hasProprietaire a rdf:Property ;
+    rdfs:label "à comme proprietaire" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:hasLocataire a rdf:Property ;
+    rdfs:label "à comme locataire" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:hasTravaux a rdf:Property ;
+    rdfs:label "à comme travaux" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
