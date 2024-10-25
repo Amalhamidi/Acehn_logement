@@ -26,13 +26,18 @@ log:Demandeur a rdfs:Class ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-log:ContratLocation a rdfs:Class ;
-    rdfs:label "ContratLocation" ;
+log:Logement a rdfs:Class ;
+    rdfs:label "Logement" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-log:Logement a rdfs:Class ;
-    rdfs:label "Logement" ;
+log:Contrat a rdfs:Class ;
+    rdfs:label "Contrat" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+log:HistoriqueOccupation a rdfs:Class ;
+    rdfs:label "HistoriqueOccupation" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
@@ -46,116 +51,76 @@ log:AgenceImmobiliere a rdfs:Class ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-log:LogementPrive a rdfs:Class ;
-    rdfs:label "LogementPrive" ;
-    rdfs:domain o:Resource ;
-    vs:term_status "experimental" .
-
-log:LogementSocial a rdfs:Class ;
-    rdfs:label "LogementSocial" ;
-    rdfs:domain o:Resource ;
-    vs:term_status "experimental" .
-
-log:ResidenceEtudiante a rdfs:Class ;
-    rdfs:label "ResidenceEtudiante" ;
-    rdfs:domain o:Resource ;
-    vs:term_status "experimental" .
-
-log:LogementUrgence a rdfs:Class ;
-    rdfs:label "LogementUrgence" ;
-    rdfs:domain o:Resource ;
-    vs:term_status "experimental" .
-
-log:Proprietaire a rdfs:Class ;
-    rdfs:label "Proprietaire" ;
-    rdfs:domain o:Resource ;
-    vs:term_status "experimental" .
-
-log:Locataire a rdfs:Class ;
-    rdfs:label "Locataire" ;
-    rdfs:domain o:Resource ;
-    vs:term_status "experimental" .
-
-log:Travaux a rdfs:Class ;
-    rdfs:label "Travaux" ;
-    rdfs:domain o:Resource ;
-    vs:term_status "experimental" .
-
 log:hasServiceLogement a rdf:Property ;
     rdfs:label "à comme service logement" ;
-    rdfs:domain o:Resource ;
+    rdfs:domain log:BailleurSocial ;
+    rdfs:range log:ServiceLogement ;
     vs:term_status "experimental" .
 
 log:hasBailleurSocial a rdf:Property ;
     rdfs:label "à comme bailleur social" ;
-    rdfs:domain o:Resource ;
+    rdfs:domain log:Demandeur ;
+    rdfs:range log:BailleurSocial ;
     vs:term_status "experimental" .
 
-:nom rdf:type rdf:Property ;
-    rdfs:domain :Demandeur ;
-    rdfs:range xsd:string ;
-    rdfs:label "nom" ;
-    rdfs:comment "Nom du demandeur" .
-
-:age rdf:type rdf:Property ;
-    rdfs:domain :Demandeur ;
-    rdfs:range xsd:int ;
-    rdfs:label "age" ;
-    rdfs:comment "Âge du demandeur" .
-
-:revenu rdf:type rdf:Property ;
-    rdfs:domain :Demandeur ;
-    rdfs:range xsd:float ;
-    rdfs:label "revenu" ;
-    rdfs:comment "Revenu annuel du demandeur" .
-
-log:hasContratLocation a rdf:Property ;
-    rdfs:label "à comme contrat location" ;
-    rdfs:domain o:Resource ;
+log:hasContrat a rdf:Property ;
+    rdfs:label "à comme contrat" ;
+    rdfs:domain log:Demandeur ;
+    rdfs:range log:Contrat ;
     vs:term_status "experimental" .
 
 log:hasLogement a rdf:Property ;
     rdfs:label "à comme logement" ;
-    rdfs:domain o:Resource ;
+    rdfs:domain log:Contrat ;
+    rdfs:range log:Logement ;
     vs:term_status "experimental" .
 
 log:hasCommissionAttribution a rdf:Property ;
     rdfs:label "à comme commission d'attribution" ;
-    rdfs:domain o:Resource ;
+    rdfs:domain log:BailleurSocial ;
+    rdfs:range log:CommissionAttribution ;
     vs:term_status "experimental" .
 
-log:hasAgenceImmobiliere a rdf:Property ;
-    rdfs:label "à comme agence immobiliere" ;
-    rdfs:domain o:Resource ;
+log:hasHistoriqueOccupation a rdf:Property ;
+    rdfs:label "à comme historique d'occupation" ;
+    rdfs:domain log:Logement ;
+    rdfs:range log:HistoriqueOccupation ;
+    vs:term_status "experimental" .
+
+log:hasDemandeur a rdf:Property ;
+    rdfs:label "à comme demandeur" ;
+    rdfs:domain log:HistoriqueOccupation ;
+    rdfs:range log:Demandeur ;
+    vs:term_status "experimental" .
+
+log:hasLogementSocial a rdf:Property ;
+    rdfs:label "à comme logement social" ;
+    rdfs:domain log:Logement ;
     vs:term_status "experimental" .
 
 log:hasLogementPrive a rdf:Property ;
-    rdfs:label "à comme logement prive" ;
-    rdfs:domain o:Resource ;
+    rdfs:label "à comme logement privé" ;
+    rdfs:domain log:Logement ;
     vs:term_status "experimental" .
 
 log:hasResidenceEtudiante a rdf:Property ;
-    rdfs:label "à comme residence etudiante" ;
-    rdfs:domain o:Resource ;
+    rdfs:label "à comme résidence étudiante" ;
+    rdfs:domain log:Logement ;
     vs:term_status "experimental" .
 
 log:hasLogementUrgence a rdf:Property ;
-    rdfs:label "à comme logement urgence" ;
-    rdfs:domain o:Resource ;
+    rdfs:label "à comme logement d'urgence" ;
+    rdfs:domain log:Logement ;
     vs:term_status "experimental" .
 
 log:hasProprietaire a rdf:Property ;
-    rdfs:label "à comme proprietaire" ;
-    rdfs:domain o:Resource ;
+    rdfs:label "à comme propriétaire" ;
+    rdfs:domain log:Logement ;
     vs:term_status "experimental" .
 
 log:hasLocataire a rdf:Property ;
     rdfs:label "à comme locataire" ;
-    rdfs:domain o:Resource ;
+    rdfs:domain log:Logement ;
     vs:term_status "experimental" .
 
-log:hasTravaux a rdf:Property ;
-    rdfs:label "à comme travaux" ;
-    rdfs:domain o:Resource ;
-    vs:term_status "experimental" .
 
