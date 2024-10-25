@@ -91,10 +91,23 @@ log:hasBailleurSocial a rdf:Property ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-log:hasDemandeur a rdf:Property ;
-    rdfs:label "à comme demandeur" ;
-    rdfs:domain o:Resource ;
-    vs:term_status "experimental" .
+:nom rdf:type rdf:Property ;
+    rdfs:domain :Demandeur ;
+    rdfs:range xsd:string ;
+    rdfs:label "nom" ;
+    rdfs:comment "Nom du demandeur" .
+
+:age rdf:type rdf:Property ;
+    rdfs:domain :Demandeur ;
+    rdfs:range xsd:int ;
+    rdfs:label "age" ;
+    rdfs:comment "Âge du demandeur" .
+
+:revenu rdf:type rdf:Property ;
+    rdfs:domain :Demandeur ;
+    rdfs:range xsd:float ;
+    rdfs:label "revenu" ;
+    rdfs:comment "Revenu annuel du demandeur" .
 
 log:hasContratLocation a rdf:Property ;
     rdfs:label "à comme contrat location" ;
