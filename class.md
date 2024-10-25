@@ -1,52 +1,19 @@
 ```mermaid
 
-     classDiagram
+    classDiagram
     class Logement {
         -id : int
         -adresse : string
         -superficie : float
         -nombrePieces : int
         -statut : string
+        -estSocial : boolean
+        -estPrive : boolean
+        -estResidenceEtudiante : boolean
+        -estLogementUrgence : boolean
         +calculerLoyer() : float
         +verifierDisponibilite() : boolean
-        +mettreAJour(details : string)
-    }
-
-    class LogementSocial {
-        -conventionnement : string
-        -plafondRessources : float
-        +verifierEligibilite(demandeur : Demandeur) : boolean
-    }
-
-    class LogementPrive {
-        -proprietaire : Proprietaire
-        +negocierLoyer() : void
-    }
-
-    class ResidenceEtudiante {
-        -gestionnaire : string
-        -servicesInclus : string[]
-        +reserverChambre(etudiant : Etudiant) : boolean
-    }
-
-    class LogementUrgence {
-        -dureeMaxSejour : int
-        -typeAccueil : string
-        +attribuerPlace(beneficiaire : PersonneEnDifficulte) : void
-    }
-
-    class Proprietaire {
-        -nom : string
-        -coordonnees : string
-        +declarerRevenusFonciers() : void
-        +gererBien(logement : Logement) : void
-    }
-
-    class Locataire {
-        -nom : string
-        -dateEntree : Date
-        +payerLoyer() : void
-        +demanderTravaux() : void
+        +mettreAJour(details : string) : void
     }
 
     class Demandeur {
@@ -54,6 +21,8 @@
         -nom : string
         -revenu : float
         -situationFamiliale : string
+        -estLocataire : boolean
+        -estProprietaire : boolean
         +deposerDemande(type : string) : void
         +mettreAJourDossier() : void
     }
@@ -61,14 +30,14 @@
     class BailleurSocial {
         -nom : string
         -parcImmobilier : Logement[]
-        +attribuerLogement(demandeur : Demandeur, logement : LogementSocial) : void
+        +attribuerLogement(demandeur : Demandeur, logement : Logement) : void
         +gererPatrimoine() : void
     }
 
     class AgenceImmobiliere {
         -nom : string
         -commission : float
-        +gererLocation(logement : LogementPrive) : void
+        +gererLocation(logement : Logement) : void
         +organiserVisite(logement : Logement, demandeur : Demandeur) : void
     }
 
@@ -82,39 +51,43 @@
         -membres : string[]
         -dateCommission : Date
         +examinerDossier(demandeur : Demandeur) : void
-        +attribuerLogement(demandeur : Demandeur, logement : LogementSocial) : void
+        +attribuerLogement(demandeur : Demandeur, logement : Logement) : void
     }
 
-    class ContratLocation {
+    class Contrat {
+        -id : int
+        -typeContrat : string  // "location" ou "propriete"
         -dateDebut : Date
         -duree : int
-        -montantLoyer : float
-        +signer(proprietaire : Proprietaire, locataire : Locataire) : void
+        -montant : float
+        -proprietaire : string
+        -locataire : string
+        +signer(demandeur : Demandeur) : void
         +renouveler() : void
         +resilier() : void
     }
 
-    class Travaux {
-        -type : string
-        -cout : float
-        -dateDebut : Date
-        +planifier() : void
-        +effectuer() : void
-        +verifierConformite() : boolean
+    class HistoriqueOccupation {
+        -dateOccupation : Date
+        -typeLogement : string
+        -demandeur : Demandeur
+        -logement : Logement
+        +ajouterHistorique() : void
+        +visualiserHistorique() : void
     }
 
-    Logement <|-- LogementSocial
-    Logement <|-- LogementPrive
-    Logement <|-- ResidenceEtudiante
-    Logement <|-- LogementUrgence
-    Logement "1" --> "0..1" Proprietaire : appartient à
-    Logement "1" --> "0..1" Locataire : occupé par
-    Logement "1" --> "0..*" Travaux : subit
-    BailleurSocial "1" --> "1..*" LogementSocial : gère
-    AgenceImmobiliere "1" --> "0..*" LogementPrive : gère
-    ServiceLogement "1" --> "0..*" Demandeur : enregistre
-    CommissionAttribution "1" --> "0..*" LogementSocial : attribue
-    ContratLocation "1" --> "1" Logement : concerne
-    Demandeur "1" --> "0..1" Logement : postule pour
+    Logement "1" --> "0..*" HistoriqueOccupation : historique d'occupation
+    HistoriqueOccupation "1" --> "1" Logement : concerne
+    Demandeur "1" --> "0..*" HistoriqueOccupation : a occupé
+    HistoriqueOccupation "1" --> "1" Demandeur : impliquant
+    Demandeur "1" --> "0..*" Contrat : est lié à
+    Contrat "1" --> "1" Logement : concerne
+    BailleurSocial "1" --> "1..*" Logement : gère
     BailleurSocial "1" --> "1" CommissionAttribution : organise
+    AgenceImmobiliere "1" --> "0..*" Logement : gère
+    ServiceLogement "1" --> "0..*" Demandeur : enregistre
+    CommissionAttribution "1" --> "0..*" Logement : attribue
+    Demandeur "1" --> "0..1" Logement : postule pour
+    CommissionAttribution "1" --> "0..*" Demandeur : examine
+
 ```
